@@ -31,7 +31,7 @@ meteor_image = pygame.image.load(
     os.path.join("ressources", "images", "meteor.png")
 ).convert_alpha()
 
-HIT = pygame.USEREVENT + 2
+HIT = pygame.USEREVENT + 1
 
 
 def handle_player_movement(pressed_keys, player):
