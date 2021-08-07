@@ -65,9 +65,7 @@ def draw_game_over():
 
 
 def main():
-    score = 0
     running = True
-    gameStarted = False
     win.blit(background, (0, 0))
 
     player = Player(
