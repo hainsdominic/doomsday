@@ -60,7 +60,7 @@ def draw_game_over():
         ),
     )
     pygame.display.flip()
-    pygame.time.delay(5000)
+    pygame.time.delay(3000)
     win.blit(background, (0, 0))
 
 
