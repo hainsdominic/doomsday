@@ -43,7 +43,7 @@ def handle_player_movement(pressed_keys, player):
         player.move(1)
 
 
-def handleCollision(player, meteors):
+def handle_collision(player, meteors):
     for meteor in meteors:
         if player.pos.colliderect(meteor.pos):
             pygame.event.post(pygame.event.Event(HIT))
@@ -144,7 +144,7 @@ def main():
         pressed_keys = pygame.key.get_pressed()
         handle_player_movement(pressed_keys, player)
 
-        handleCollision(player, meteors)
+        handle_collision(player, meteors)
 
         for meteor in meteors:
             if meteor.pos.top > SCREEN_HEIGHT:
