@@ -64,6 +64,21 @@ def draw_game_over():
     win.blit(background, (0, 0))
 
 
+def get_high_score():
+    # If the files doesnt exists, will return 0 as the high score
+    try:
+        f = open("score.txt", "r")
+        return int(f.read())
+    except:
+        return 0
+
+
+def write_high_score(score):
+    f = open("score.txt", "w")
+    f.write(str(score))
+    f.close()
+
+
 def main():
     running = True
     win.blit(background, (0, 0))
@@ -78,13 +93,25 @@ def main():
     ticks = 0
     meteors = []
 
+    score = 0
+    highscore = get_high_score()
+
     while running:
         win.blit(background, (0, 0))
-        draw_text = SCORE_FONT.render("Score: " + str(ticks // 5), 1, (255, 255, 255))
+        score = ticks // 5
+        score_text = SCORE_FONT.render("Score: " + str(score), 1, (255, 255, 255))
         win.blit(
-            draw_text,
+            score_text,
             (0, 0),
         )
+        high_score_text = SCORE_FONT.render(
+            "Highest: " + str(highscore), 1, (255, 255, 255)
+        )
+        win.blit(
+            high_score_text,
+            (0, 30),
+        )
+
         clock.tick(60)
         ticks += 1
         if ticks % 50 == 0:  # Creates new meteor every 50 ticks
@@ -107,6 +134,9 @@ def main():
                     running = False
 
             if event.type == HIT:
+                if score > highscore:
+                    highscore = score
+                    write_high_score(score)
                 draw_game_over()
                 meteors = []
                 ticks = 0
