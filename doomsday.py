@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import pygame
 from pygame.locals import KEYDOWN, QUIT, K_ESCAPE, K_a, K_d
 import os
